@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="3" type="plugin" group="system"  method="upgrade">
+	<name>System - osolCaptcha</name>
+	<author>Sreekanth Dayanand</author>
+	<creationDate>May 2010</creationDate>
+	<copyright>(C) 2010 - Outsource Online.</copyright>
+	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+	<authorEmail>joomla@outsource-online.net</authorEmail>
+	<authorUrl>http://www.outsource-online.net/</authorUrl>
+	<version>3</version>
+	<description>
+	<![CDATA[
+	Easily add captcha to joomla forms for login,registration and contact us.
+	<span style="color:#900; font-weight:bold; font-size:larger">Make sure that you publish this component,from <a href="index.php?option=com_plugins&filter_folder=system">here</a></span>
+		
+]]>
+	
+	</description>
+	<languages folder="lang">
+	    <language tag="en-GB" >en-GB.plg_system_osolcaptcha.ini</language>
+		<!--<language tag="it-IT" >it-IT.plg_system_osolcaptcha.ini</language>
+		<language tag="ar-DZ" >ar-DZ.plg_system_osolcaptcha.ini</language>
+		<language tag="de-DE" >de-DE.plg_system_osolcaptcha.ini</language>
+		<language tag="da-DK" >da-DK.plg_system_osolcaptcha.ini</language>
+		<language tag="fr-FR" >fr-FR.plg_system_osolcaptcha.ini</language>
+		<language tag="ca-ES" >ca-ES.plg_system_osolcaptcha.ini</language>
+		<language tag="es-ES" >es-ES.plg_system_osolcaptcha.ini</language>
+		<language tag="nl-NL" >nl-NL.plg_system_osolcaptcha.ini</language>
+		<language tag="pt-PT" >pt-PT.plg_system_osolcaptcha.ini</language>
+		<language tag="pt-BR" >pt-BR.plg_system_osolcaptcha.ini</language>
+		<language tag="hr-HR" >hr-HR.plg_system_osolcaptcha.ini</language>
+		<language tag="cs-CZ" >cs-CZ.plg_system_osolcaptcha.ini</language>
+		<language tag="pl-PL" >pl-PL.plg_system_osolcaptcha.ini</language>
+		
+		<language tag="ro-RO" >ro-RO.plg_system_osolcaptcha.ini</language>
+		<language tag="sv-SE" >sv-SE.plg_system_osolcaptcha.ini</language>
+		<language tag="hu-HU" >hu-HU.plg_system_osolcaptcha.ini</language>
+		<language tag="uk-UA" >uk-UA.plg_system_osolcaptcha.ini</language>
+		<language tag="bg-BG" >bg-BG.plg_system_osolcaptcha.ini</language>
+		<language tag="sr-RS" >sr-RS.plg_system_osolcaptcha.ini</language>
+		<language tag="sr-YU" >sr-YU.plg_system_osolcaptcha.ini</language>
+		<language tag="ru-RU" >ru-RU.plg_system_osolcaptcha.ini</language>
+		<language tag="th-TH" >th-TH.plg_system_osolcaptcha.ini</language>
+		<language tag="tr-TR" >tr-TR.plg_system_osolcaptcha.ini</language>-->
+		
+	</languages>
+	<files >
+		<filename plugin="osolcaptcha">osolcaptcha.php</filename>
+		<filename plugin="osolcaptcha">OSOLmulticaptcha.php</filename>
+		<filename plugin="osolcaptcha">captchaPreview.php</filename>e
+		<folder>osolCaptcha</folder>
+		<folder>elements</folder>
+	</files>
+	
+	<config>
+       <fields name="params" addfieldpath="/plugins/system/osolcaptcha/elements">
+    		<fieldset name="basic">
+                <field name="bgColor"  type="text" size="25" default="#2c8007" label="Background Color" description="Enter color(6 letter hex value )" />
+				<field name="textColor" type="text" size="25" default="#ffffff" label="Text Color" description="Enter color(6 letter  hex value)" />
+				<field name="allowedSymbols" type="text" size="50" default="ABCDEFGHJKLMNPQRTWXY346789" label="Allowed Symbols" description="Avoid sysbols that could confuse users in some fonts eg:o AND 0,1 and i,5 and s,u and v,6 and b etc" />
+                <!--<field name="enableForModules" type="radio"  label="Use in  mod_login?" description="Enabling for mod_login is  subject to conditions and is disabled by default.if you enable it, make sure that it is in a unique position ,position must be any of these('left','right','top','user2','user3') .The position occupying mod_login should not contain any other modules "  default="No">
+					<option value="Yes">Yes</option>
+					<option value="No">No</option>
+				</field>-->
+	
+                
+        <field name="imageFunction" type="list"  label="Select Image Function" description="Select wether you want to show distorted letters or plane letters "  default="Adv">
+			<option value="Plane">Plane letters</option>
+			<option value="Adv">Distorted letters</option>
+		</field>
+		<field name="fontFile" type="fontslist" default="AdLibBT.TTF" label="Select font" description="Select font " />
+		<field name="white_noise_density" type="list"  label="Noise in BG color" description="Select font "  default="0">
+			<option value="0">0</option>
+			<option value="0.1">0.1</option>
+			<option value="0.2">0.2</option>
+			<option value="0.3">0.3</option>
+			
+		</field>
+		<field name="black_noise_density" type="list"  label="Noise in Text color" description="Select font "  default="0">
+			<option value="0">0</option>
+			<option value="0.1">0.1</option>
+			<option value="0.2">0.2</option>
+			<option value="0.3">0.3</option>
+			
+		</field>
+		<!--foreground color noise,background color noise,fluctuation amplitude-->
+		<field name="letterSize" type="list"  label="Select letter size" description="Select letter size "  default="36">
+			<option value="24">24</option>
+			<option value="36">36</option>
+			<option value="48">48</option>
+			<option value="72">72</option>
+		</field>
+		<field name=" " type="previewcaptchawithsettings" default="" label="Preiew Captcha" description="" />
+		<field type="spacer" />
+		</fieldset>
+		<fieldset name="Core_Joomla_Forms" label="Core Joomla forms">
+		<field name="enableForContactUs" type="radio"  label="Auto add in  Contact Us form?" description="If it is a customized contact us form by editing the html or because of template override ,the captcha may not auto add even if you enable tthis"  default="Yes">
+			<option value="Yes">Yes</option>
+			<option value="No">No</option>
+		</field>
+		
+		<!--<field name="enableForComLogin" type="radio"  label="Auto add in  Login form(component page)?" description="If it is a customized Login form by editing the html or because of template override ,the captcha may not auto add even if you enable tthis"  default="Yes">
+			<option value="Yes">Yes</option>
+			<option value="No">No</option>
+		</field>-->
+		
+		
+		<field name="enableForRegistration" type="radio"  label="Auto add in (joomla default)Registration ?" description="If it is a customized Registration form by editing the html or because of template override ,the captcha may not auto add even if you enable tthis"  default="Yes">
+			<option value="Yes">Yes</option>
+			<option value="No">No</option>
+		</field>
+		
+		
+		<field name="enableForReset" type="radio"  label="Auto add in  Reset Password?" description="If it is a customized Reset Password form by editing the html or because of template override ,the captcha may not auto add even if you enable tthis"  default="Yes">
+			<option value="Yes">Yes</option>
+			<option value="No">No</option>
+		</field>
+		
+		<field name="enableForRemind" type="radio"  label="Auto add in  Remind Username?" description="If it is a customized Remind Username form by editing the html or because of template override ,the captcha may not auto add even if you enable tthis"  default="Yes">
+			<option value="Yes">Yes</option>
+			<option value="No">No</option>
+		</field>
+		
+		<!--<field name="enableSecondLevelSecurity" type="radio"  label="Enable second level security for Core forms?" description="Before enabling this make sure the captcha is seen in all joomla core forms for which this plugin is enabled with the radio buttons.If cpatcha is not visible in any of the forms eventhough it is enabled here,please set it to disable above,otherwas that form wont work"  default="No">
+			<option value="Yes">Yes</option>
+			<option value="No">No</option>
+		</field>-->
+		<field type="spacer" />
+		
+	</fieldset>
+	
+	<fieldset name="Botscout"  label="Botscout Options">
+		<field name="botScoutProtection" type="list"  label="BotScout Protection" description="Block IPs that are reported to be spam in botscout.com "  default="Disable">
+			<option value="Disable">Disable</option>
+			<option value="Redirect">Redirect to specified Page</option>
+			<option value="Stop">Stop Execution and Mail</option>
+			
+		</field>
+		<field name="botscoutAPIKey"  type="text" size="25" default="" label="Botscout API key" description="Botscout API key.Please signup for an API key to set this at http://botscout.com/getkey.htm " />
+		<field name="reportBotscoutNegativeMail"  type="text" size="25" default="" label="Report -ve results from botsout ip verification" description="Email to report -ve results from botsout ip verification.Set blank if you dont want to report" />
+		<field name="redirectURLforSuspectedIPs"  type="text" size="50" default="http://www.google.com/" label="Redirect users from suspected IPs to " description="Redirect users from suspected IPs dietected with botscout to" />
+	</fieldset>
+    <fieldset name="Administrator_Pass_Phrase"   label="Administrator Pass Phrase">
+		<field name="adminPassPhrase"  type="text" size="25" default="" label="Administrator Pass Phrase" description="if you set a vlue here ,admin login page will be accessible only like http://yourjoomlasite/administrator/?osolPP='pass phrase you set here'" />
+		<field name=" " type="jsforadmipassphrase" default="" label="" description="" />
+	</fieldset>
+
+	<!--<fieldset name="Testing">
+                <field name="" type="nondefaultforms" default="" label="Set captcha for more forms?" description="Click here only if you know are an expert in joomla.Otherwise contact the developer" />
+				<field name="osolCaptchaAdvancedOptions" type="advancedoptions" default="" label="Advanced options" description="Click here only if you know are an expert in joomla.Otherwise contact the developer" />
+     </fieldset>-->
+        </fields> 
+	</config>
+</extension>
