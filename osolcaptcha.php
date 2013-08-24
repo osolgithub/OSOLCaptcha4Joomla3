@@ -116,6 +116,7 @@ class plgSystemOSOLCaptcha extends JPlugin
 		  }
 		  //alert($$( \"input[name=\"+\"jform[contact_name]\" +\"]\").map(function(e) { return e.value; }));
 		  //alert($$( \"input[name=\"+\"jform[contact_name]\" +\"]\")[0].value);
+
 		 
 		  $captchaVerifyURL = JURI::base()."index.php";
 		   $ajax = "
@@ -299,10 +300,10 @@ class plgSystemOSOLCaptcha extends JPlugin
 
 				  jimport('joomla.mail.helper');
 		
-				  $mailer =& JFactory::getMailer();
+				  $mailer = JFactory::getMailer();
 		
-				  $config =& JFactory::getConfig();
-				  $sender = array($config->getValue( 'config.mailfrom'),$config->getValue( 'config.fromname' ) );
+				  $config = JFactory::getConfig();
+				  $sender = array($config->get( 'mailfrom'),$config->get( 'fromname') );
 				  
 				 
 				  
@@ -604,8 +605,15 @@ class plgSystemOSOLCaptcha extends JPlugin
 					return $skipForm;
 				
 		}
+		function isAdminPage()
+		{
+			/*$pathArray = preg_split("~/~",JURI::base());//fix provided by Gruz from ukraine on 5th september 2010
+			$isAdmin = ($pathArray[(count($pathArray) - 2)] == "administrator");*/
+			return preg_match("@".preg_quote(DIRECTORY_SEPARATOR)."administrator$@",JPATH_BASE);
+		}
 		function shouldCheckForOSOLCaptcha()
 		{
+			if($this->isAdminPage())return false;
 			/*$currentSession =  & JFactory::getSession() ;
 			$currentSession->set('osolCaptchaIntance'.$GLOBALS['totalCaptchas'], $addToForm);*/
 			$enabledForms = $this->enabledForms;//$this->getEnabledForms();
@@ -701,6 +709,7 @@ class plgSystemOSOLCaptcha extends JPlugin
 		}
 		function shouldInsertOSOLCaptcha()
 		{
+			if($this->isAdminPage())return false;
 			$enabledForms = $this->enabledForms;//$this->getEnabledForms();
 			
 			$enableOnForm = true;
