@@ -104,14 +104,17 @@ class plgSystemOSOLCaptcha extends JPlugin
 		  if(isset($ajaxCheckFor['id']))
 		  {
 			  $formId = $ajaxCheckFor['id'];
-			  $scriptToGetForm = "$('$formId')";
+			  //$scriptToGetForm = "$('$formId')";
+			  $scriptToGetForm = "jQuery('#$formId')";
+			  $scriptToGetForm = "jQuery( \"form[id=\"+\"$formId\" +\"]\")";
 		  }
 		  else //if(isset($ajaxCheckFor['name']))
 		  {
 			  
 			  
 			  list($k,$v)=each($ajaxCheckFor);
-			  $scriptToGetForm = "$$( \"form[$k=\"+\"$v\" +\"]\")[0]";
+			  //$scriptToGetForm = "$$( \"form[$k=\"+\"$v\" +\"]\")[0]";
+			  $scriptToGetForm = "jQuery( \"form[$k=\"+\"$v\" +\"]\")";
 			 
 		  }
 		  //alert($$( \"input[name=\"+\"jform[contact_name]\" +\"]\").map(function(e) { return e.value; }));
@@ -120,40 +123,33 @@ class plgSystemOSOLCaptcha extends JPlugin
 		 
 		  $captchaVerifyURL = JURI::base()."index.php";
 		   $ajax = "
-		   				
-						window.addEvent( 'domready', function() {
-								onsubmitFunction =  $scriptToGetForm.get('onsubmit');
-									//alert($scriptToGetForm.option.value);
-									$scriptToGetForm.addEvent( 'submit', function(e){
-																				   
+		   				jQuery(document).ready(function(){
+							
+							
+							onsubmitFunction =  $scriptToGetForm.attr('onsubmit');
+							$scriptToGetForm.bind('submit',function(e){
+										e.preventDefault();										   
 										var captchaResponse =  true;
-										formInst = this;
-										osolCatchaTxtInst = this.osolCatchaTxtInst.value;
-										osolCatchaTxt = this.osolCatchaTxt.value;
+										var formInst = this;
+										var osolCatchaTxtInst = $scriptToGetForm.find('input[name=osolCatchaTxtInst]').val();
+										var osolCatchaTxt = $scriptToGetForm.find('input[name=osolCatchaTxt]').val();
+										//var osolCatchaTxt = jQuery(this).find('input[name=\"osolCatchaTxt\"]').val();
 										//alert($('osolCaptcha-ajax-container'));
-										  $('osolCaptcha-ajax-container".$index."').addClass('osolCaptcha-ajax-loading');
-								 			$('osolCaptcha-ajax-container".$index."').innerHTML =  \"Please wait while verifying captcha\";
-										  /*var a = new Ajax('{$captchaVerifyURL}',{
-											   method:'get',
-											   onComplete:function(response){
-													//var resp=Json.evaluate(response);
-													alert('ajax complete ,result : ' + resp);
-													// Other code to execute when the request completes.
-													$('osolCaptcha-ajax-container".$index."').removeClass('osolCaptcha-ajax-loading').innerHTML = '';
-											   }
-										  }).request();*/
-										  var request = new Request({
-			
-																	url: '{$captchaVerifyURL}',
-											
-																	method:'get',
-											
-																	data: 'verifyCaptcha=True&instanceNo='+osolCatchaTxtInst+'&osolCatchaTxtInst='+osolCatchaTxt,
-											
-																	onSuccess: function(responseText){
+										  jQuery('#osolCaptcha-ajax-container".$index."').addClass('osolCaptcha-ajax-loading');
+								 			jQuery('#osolCaptcha-ajax-container".$index."').html(\"Please wait while verifying captcha\");
+										  
+										 var data = {verifyCaptcha:'True',instanceNo:osolCatchaTxtInst,osolCatchaTxtInst:osolCatchaTxt}
+										var dataType = 'text';
+										jQuery.ajax({
+												type: 'POST',
+												url: '{$captchaVerifyURL}',
+												data: data,
+												dataType: dataType,//'text',
+												async: false,
+												success: function(responseText){
 														
 																					//alert( responseText);
-																					$('osolCaptcha-ajax-container".$index."').removeClass('osolCaptcha-ajax-loading').innerHTML = '';
+																					jQuery('#osolCaptcha-ajax-container".$index."').removeClass('osolCaptcha-ajax-loading').innerHTML = '';
 																					if(responseText == 'false')
 																					{
 																						alert('".JTEXT::_('OSOLCAPTCHA_ERROR_MESSAGE')."')
@@ -171,16 +167,20 @@ class plgSystemOSOLCaptcha extends JPlugin
 																					
 														
 																				}
-											
-																	}).send();
-										  
-										  
-											return false;
-											
-										  
-									 });
 						
-					} );
+		
+										  
+										  
+										  
+											
+											
+										  
+									 });//jQuery.ajax(
+									 return false;
+							})//$scriptToGetForm.bind('onsubmit',function(e){
+							alert(onsubmitFunction);
+						  });//jQuery(document).ready(function(){
+						
 		   
 					 
 					";
