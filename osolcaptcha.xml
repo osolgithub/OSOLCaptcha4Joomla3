@@ -42,6 +42,7 @@
 		<language tag="ru-RU" >ru-RU.plg_system_osolcaptcha.ini</language>
 		<language tag="th-TH" >th-TH.plg_system_osolcaptcha.ini</language>
 		<language tag="tr-TR" >tr-TR.plg_system_osolcaptcha.ini</language>
+		<language tag="zh-CN" >zh-CN.plg_system_osolcaptcha.ini</language>
 		
 	</languages>
 	<files >
