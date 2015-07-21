@@ -178,7 +178,7 @@ class plgSystemOSOLCaptcha extends JPlugin
 									 });//jQuery.ajax(
 									 return false;
 							})//$scriptToGetForm.bind('onsubmit',function(e){
-							//alert(onsubmitFunction);
+							//alert(onsubmitFunction);//this was put for testing
 						  });//jQuery(document).ready(function(){
 						
 		   
