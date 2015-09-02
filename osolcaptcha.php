@@ -243,7 +243,7 @@ class plgSystemOSOLCaptcha extends JPlugin
 		   $document = JFactory::getDocument();
     	   $document->addScriptDeclaration($script1);
 		   //$document->addScriptDeclaration($script2);
-		   JHTML::stylesheet(JURI::base() . 'plugins/system/osolcaptcha/osolCaptcha/captchaStyle.css');//, $path);
+		   JHTML::stylesheet(JURI::root() . 'plugins/system/osolcaptcha/osolCaptcha/captchaStyle.css');//, $path);
 		   //name=\"osolCatchaTxtInst\"
 		   
 		   
