@@ -44,6 +44,9 @@
 		<language tag="tr-TR" >tr-TR.plg_system_osolcaptcha.ini</language>
 		
 	</languages>
+    <updateservers>
+        <server type="extension" priority="1" name="PLG_OSOLCaptcha">https://raw.githubusercontent.com/osolgithub/OSOLCaptcha4Joomla3/master/osolcaptcha_update.xml</server>
+    </updateservers>
 	<files >
 		<filename plugin="osolcaptcha">osolcaptcha.php</filename>
 		<filename plugin="osolcaptcha">OSOLmulticaptcha.php</filename>

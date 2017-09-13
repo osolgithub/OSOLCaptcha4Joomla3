@@ -1,0 +1,21 @@
+<updates>
+    <update>
+        <name>System - osolCaptcha</name>
+        <description>Protects Joomla! forms and 3rd party extensions by integrating easily addable captcha</description>
+        <element>osolcaptcha</element>
+        <type>plugin</type>
+        <folder>system</folder>
+        <client>site</client>
+        <version>3</version>
+        <infourl title="osolCaptcha">http://www.outsource-online.net/osol-captcha-for-joomla.html</infourl>
+        <downloads>
+            <downloadurl type="full" format="zip">https://github.com/osolgithub/OSOLCaptcha4Joomla3/archive/master.zip</downloadurl>
+        </downloads>
+        <tags>
+            <tag>stable</tag>
+        </tags>
+        <maintainer>Sreekanth Dayanand</maintainer>
+        <maintainerurl>http://www.outsource-online.net/</maintainerurl>
+        <targetplatform name="joomla" version="3.*"/>
+    </update>
+</updates>
