@@ -7,7 +7,7 @@
 	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
 	<authorEmail>joomla@outsource-online.net</authorEmail>
 	<authorUrl>http://www.outsource-online.net/</authorUrl>
-	<version>3</version>
+	<version>3.1</version>
 	<description>
 	<![CDATA[
 	Easily add captcha to joomla forms for login,registration and contact us.
