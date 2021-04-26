@@ -14,3 +14,4 @@
 	min-height:20px;
 	padding-left:22px;
 }
+@media (max-width: 576px){ .osolCaptchaBlock table tr{ display: grid; } } 
