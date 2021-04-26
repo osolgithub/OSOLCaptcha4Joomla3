@@ -112,7 +112,8 @@ class plgSystemOSOLCaptcha extends JPlugin
 		  {
 			  
 			  
-			  list($k,$v)=each($ajaxCheckFor);
+			  //list($k,$v)=each($ajaxCheckFor);
+			  foreach($ajaxCheckFor as $k => $v)
 			  //$scriptToGetForm = "$$( \"form[$k=\"+\"$v\" +\"]\")[0]";
 			  $scriptToGetForm = "jQuery( \"form[$k=\"+\"$v\" +\"]\")";
 			 
